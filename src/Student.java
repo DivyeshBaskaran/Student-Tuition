@@ -4,6 +4,7 @@ public class Student {
     public void tuitionDue(){
 
     }
+private int tution;
 
     @Override
     public String toString() {
