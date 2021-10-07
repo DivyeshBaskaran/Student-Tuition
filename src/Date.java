@@ -204,7 +204,35 @@ public class Date implements Comparable<Date> {
     public static void main (String [] args) {
         //Testing isValid() Method
 
+        Date t1 = new Date ("13/1/2021");//false
+        System.out.println(t1.isValid());
+
+        Date t2 = new Date ("12/2/2021");//false
+        System.out.println(t2.isValid());
+
+        Date t3 = new Date ("12/32/2021");//false
+        System.out.println(t3.isValid());
+
+        Date t4 = new Date ("0/2/2021");//false
+        System.out.println(t4.isValid());
+
+        Date t5 = new Date ("3/12/2021");//true
+        System.out.println(t5.isValid());
+
+        Date t6 = new Date ("2/29/2021");//false
+        System.out.println(t6.isValid());
+
+        Date t7 = new Date ("2/28/2021");//true
+        System.out.println(t7.isValid());
+
+        Date t8 = new Date ("2/28/1979");//false
+        System.out.println(t8.isValid());
+
+        Date t9 = new Date ("2/28/2021");//true
+        System.out.println(t9.isValid());
+
         //Test Case #1
+        /*
         System.out.println("---- Test Case 1 ----");
         Date test1 = new Date ("13/1/1999");
         boolean expectedValue1 = false;
@@ -279,5 +307,6 @@ public class Date implements Comparable<Date> {
 
         //End
         System.out.println("\nTesting Completed ");
+         */
     }
 }
