@@ -44,6 +44,10 @@ public class Student {
 
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
     public double getTuition() {
         return tuition;
     }
@@ -72,7 +76,7 @@ public class Student {
     @Override
     public String toString() {
         super.toString();
-        String out = profile.getName()+":"+profile.getMajor()+":"+credits+" credit hours:tuition due:"+
+        String out = credits+" credit hours:tuition due:"+
                 df.format(tuition)+":total payment:"+df.format(payment)+":last payment date: ";
         if(date == null){
             out += "--/--/--:";

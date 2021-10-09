@@ -1,4 +1,5 @@
 package src;
+
 import src.Student.Major;
 
 public class Profile {
@@ -16,5 +17,10 @@ public class Profile {
 
     public Major getMajor() {
         return major;
+    }
+
+    @Override
+    public String toString() {
+        return name+":"+major+":";
     }
 }
