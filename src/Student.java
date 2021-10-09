@@ -11,7 +11,7 @@ public class Student {
     private double payment;
     private double financialAid;
     private boolean awardedFA = false;
-    DecimalFormat df = new DecimalFormat("#.00");
+    private DecimalFormat df = new DecimalFormat("#.00");
     public static enum Major {CS,IT,BA,EE,ME};
     public static enum State {NY,CT};
 
