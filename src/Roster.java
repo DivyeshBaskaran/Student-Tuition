@@ -10,7 +10,8 @@ public class Roster {
 
     private int find(Student student) {
         for(int i = 0; i<size; i++){
-            if(roster[i].getProfile().getName().equals(student.getProfile().getName()) && roster[i].getProfile().getMajor().equals(student.getProfile().getMajor())){
+            if(roster[i].getProfile().getName().equals(student.getProfile().getName()) &&
+                    roster[i].getProfile().getMajor().equals(student.getProfile().getMajor())){
                 return i;
             }
         }
