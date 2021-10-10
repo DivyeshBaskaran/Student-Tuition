@@ -26,7 +26,7 @@ public class Roster {
 
     private void grow() {
         int newSize = roster.length;
-        newSize += 4;
+        newSize += GROW;
         Student[] newRoster = new Student[roster.length+GROW];
         for (int i = 0; i< roster.length; i ++){
             newRoster[i] = roster[i];

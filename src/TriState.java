@@ -1,19 +1,19 @@
 package src;
 
 public class TriState extends NonResident{
-    private State state;
-    public TriState(String name, Major major, int credits, State state) {
+    private TriState triState;
+    public TriState(String name, Major major, int credits, TriState triState) {
         super(name, major, credits);
-        this.state = state;
+        this.triState = triState;
     }
 
     @Override
     public void tuitionDue(){
         super.tuitionDue();
-        if(state.equals(State.NY)){
+        if(triState.equals(TriState.NY)){
             addTuition(-NY_DISCOUNT);
         }
-        if(state.equals(State.CT)){
+        if(triState.equals(TriState.CT)){
             addTuition(-CT_DISCOUNT);
         }
     }
@@ -22,10 +22,10 @@ public class TriState extends NonResident{
     public String toString() {
         super.toString();
         String out = " (tri-state) :";
-        if(state.equals(State.NY)){
+        if(triState.equals(TriState.NY)){
             out += "NY";
         }
-        if(state.equals(State.CT)){
+        if(triState.equals(TriState.CT)){
             out += "CT";
         }
         return  out;
