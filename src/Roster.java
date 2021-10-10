@@ -1,12 +1,18 @@
 package src;
 
+import java.util.Arrays;
+
 public class Roster {
-    private Student[] roster;
+    private Student[] roster = new Student[GROW];
     private int size; //keep track of the number of students in the roster
 
     private static final int GROW = 4;
     private static final int NOT_FOUND = -1;
     private static final int ONE = 1;
+
+    public Roster(){
+
+    }
 
     private int find(Student student) {
         for(int i = 0; i<size; i++){
@@ -30,7 +36,7 @@ public class Roster {
 
     public boolean add(Student student) {
         if(find(student)==NOT_FOUND) {
-            if (size < roster.length) {
+            if (size < roster.length-ONE) {
                 roster[size] = student;
                 size++;
                 return true;
@@ -52,5 +58,14 @@ public class Roster {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        System.out.println("* list of students in the roster **");
+        for (Student student : roster){
+            student.toString();
+        }
+        return "* end of roster **";
     }
 }
