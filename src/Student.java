@@ -96,12 +96,20 @@ public class Student {
         this.payment = payment;
     }
 
+    public double getPayment() {
+        return payment;
+    }
+
     public void setTuition(double tuition) {
         this.tuition = tuition;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Date getDate() {
+        return  date;
     }
 
     public void payment(double deposit, Date date){

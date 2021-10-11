@@ -136,12 +136,55 @@ public class Roster {
         }
     }
 
-    @Override
-    public String toString() {
-        System.out.println("* list of students in the roster **");
-        for (Student student : roster){
-            student.toString();
+
+    public void print() {
+        if(size != 0){
+            System.out.println("* list of students in the roster **");
+            for(Student element: roster){
+                if(element!=null)
+                    System.out.println(element.toString());
+            }
+            System.out.println("* end of roster **");
+        }else{
+            System.out.println("Student roster is empty!");
         }
-        return "* end of roster **";
     }
+
+
+
+    public void printByDate() {
+        if(size != 0){
+            Student[] orderByDate = roster.clone();
+            for(int i = 0 ; i < size; i++ ){
+                int smallIndex = i;
+                for (int j = i; j < size; j++){
+                    Date smallDate = orderByDate[smallIndex].getDate();
+                    Date currIndex = orderByDate[j].getDate();
+                    if(smallDate.getYear() > currIndex.getYear()){
+                        smallIndex = j;
+                    }else{
+                        if(smallDate.getYear() == currIndex.getYear() && smallDate.getMonth() > currIndex.getMonth()){
+                            smallIndex = j;
+                        }else{
+                            if(smallDate.getMonth() == currIndex.getMonth() && smallDate.getDay() > currIndex.getDay() && smallDate.getYear() == currIndex.getYear()){
+                                smallIndex = j;
+                            }
+                        }
+                    }
+                }
+                int index =  this.find(orderByDate[i]);
+                orderByDate[i] = orderByDate[smallIndex];
+                orderByDate[smallIndex] = roster[i];
+            }
+            System.out.println("*Album Collection by Release Date");
+            for(int i =0; i<size;i++){
+                if(orderByDate[i].getPayment() != 0){
+                    System.out.println(orderByDate[i].toString());
+                }
+            }
+        }else{
+            System.out.println("The collection is empty!");
+        }
+    }
+
 }
