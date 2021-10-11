@@ -1,5 +1,5 @@
 package src;
-
+b
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Scanner;

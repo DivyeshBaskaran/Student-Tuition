@@ -61,6 +61,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="juni" level="project" />
+    <orderEntry type="library" name="junit" level="project" />
   </component>
 </module>
