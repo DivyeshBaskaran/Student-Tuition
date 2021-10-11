@@ -1,5 +1,5 @@
 package src;
-b
+
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -121,10 +121,11 @@ public class TuitionManager {
                     S(c);
                     break;
                 case "P":
-                    P(c);
+                    roster.print();
+
                     break;
                 case "PR":
-                    PR(c);
+                    roster.printByDate();
                     break;
                 case "PN":
                     PN(c);

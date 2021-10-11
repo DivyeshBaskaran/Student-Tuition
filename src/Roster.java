@@ -1,5 +1,5 @@
 package src;
-b
+
 import src.Student.Major;
 
 public class Roster {
