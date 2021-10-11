@@ -60,6 +60,12 @@ public class Roster {
         return false;
     }
 
+    public void calculations(){
+        for (Student student : roster){
+            student.tuitionDue();
+        }
+    }
+
     @Override
     public String toString() {
         System.out.println("* list of students in the roster **");

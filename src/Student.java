@@ -37,11 +37,16 @@ public class Student {
     public Student (String name, Major major, int credits){
         this.profile = new Profile(name,major);
         this.credits = credits;
-        tuitionDue();
+        //tuitionDue();
     }
 
     public void tuitionDue(){
 
+    }
+
+    public void setFinancialAid(double financialAid) {
+        this.financialAid = financialAid;
+        addTuition(-financialAid);
     }
 
     public Profile getProfile() {

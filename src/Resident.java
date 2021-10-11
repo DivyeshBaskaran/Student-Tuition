@@ -1,6 +1,9 @@
 package src;
 
 public class Resident extends Student{
+
+    public static final int MAX_FINANCIAL_AID = 10000;
+
     public Resident(String name, Major major, int credits) {
         super(name, major, credits);
     }

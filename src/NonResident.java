@@ -2,6 +2,8 @@ package src;
 
 public class NonResident extends Student{
 
+    public static final int MAX_FINANCIAL_AID = 0;
+
     public NonResident(String name, Major major, int credits) {
         super(name, major, credits);
     }
