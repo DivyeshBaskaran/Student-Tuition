@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 
 /**
- * This it the pack.Date class that stores information about the release date of an album
- * <p>
+ * This it the Date class that stores information about a Date
+ *
  * This includes: year, month, and day
  *
  * @author Divyesh Nemam Baskaran, Viraj Patel
@@ -111,19 +111,20 @@ public class Date implements Comparable<Date> {
      */
     private boolean beforeToday() {
         Date today = new Date();
-        if (this.year > today.year){
+        if (this.year > today.year) {
             return false;
-        } if (this.year == today.year) {
+        }
+        if (this.year == today.year) {
             if (this.month > today.month) {
                 return false;
-            } if (this.month == today.month){
-                if (this.day > today.day){
+            }
+            if (this.month == today.month) {
+                if (this.day > today.day) {
                     return false;
                 } else return true;
             } else return true;
         } else return true;
     }
-
 
 
     /**
@@ -142,19 +143,21 @@ public class Date implements Comparable<Date> {
 
     /**
      * This method checks if the input Month and Day are valid numbers
+     *
      * @return
      */
     private boolean monthAndDayValidator() {
         if (this.month < MIN_MONTH || this.month > MAX_MONTH || this.day <= 0) {
             return false;
         }
-        if(this.day <= getMaxDaysInMonth()) {
+        if (this.day <= getMaxDaysInMonth()) {
             return true;
-        }else return false;
+        } else return false;
     }
 
     /**
      * This method returns the max days there should be in this.month
+     *
      * @return maxDays - integer value of the max days in this.month
      */
     private int getMaxDaysInMonth() {
@@ -201,34 +204,34 @@ public class Date implements Comparable<Date> {
     /**
      * Testbed main to test the isValid() method in the pack.Date class
      */
-    public static void main (String [] args) {
+    public static void main(String[] args) {
         //Testing isValid() Method
 
-        Date t1 = new Date ("13/1/2021");//false
+        Date t1 = new Date("13/1/2021");//false
         System.out.println(t1.isValid());
 
-        Date t2 = new Date ("12/2/2021");//false
+        Date t2 = new Date("12/2/2021");//false
         System.out.println(t2.isValid());
 
-        Date t3 = new Date ("12/32/2021");//false
+        Date t3 = new Date("12/32/2021");//false
         System.out.println(t3.isValid());
 
-        Date t4 = new Date ("0/2/2021");//false
+        Date t4 = new Date("0/2/2021");//false
         System.out.println(t4.isValid());
 
-        Date t5 = new Date ("3/12/2021");//true
+        Date t5 = new Date("3/12/2021");//true
         System.out.println(t5.isValid());
 
-        Date t6 = new Date ("2/29/2021");//false
+        Date t6 = new Date("2/29/2021");//false
         System.out.println(t6.isValid());
 
-        Date t7 = new Date ("2/28/2021");//true
+        Date t7 = new Date("2/28/2021");//true
         System.out.println(t7.isValid());
 
-        Date t8 = new Date ("2/28/1979");//false
+        Date t8 = new Date("2/28/1979");//false
         System.out.println(t8.isValid());
 
-        Date t9 = new Date ("2/28/2021");//true
+        Date t9 = new Date("2/28/2021");//true
         System.out.println(t9.isValid());
 
         //Test Case #1

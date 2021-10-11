@@ -1,3 +1,10 @@
+/**
+ * This class is the Subclass of NonResident that is used to create TriState students
+
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ *
+ */
+
 package src;
 
 public class TriState extends NonResident{

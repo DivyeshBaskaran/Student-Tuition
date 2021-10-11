@@ -1,9 +1,17 @@
+/**
+ * This class is the UI that contains the run function to interact with the Roster of Students
+
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ *
+ */
+
 package src;
 
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
+
 import src.Student.Major;
 import src.Student.Tri;
 import src.Roster;
@@ -28,57 +36,57 @@ public class TuitionManager {
     private static final int FOUR = 4;
     private static final int FIVE = 5;
 
-    public void run(){
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         roster = new Roster();
         System.out.println("Tuition Manager Starts Running");
-        while(true){
+        while (true) {
             String input = scanner.nextLine();
-            StringTokenizer c =new StringTokenizer(input,",");
+            StringTokenizer c = new StringTokenizer(input, ",");
             int tokens = c.countTokens();
             command = c.nextToken();
-            switch(command) {
+            switch (command) {
                 case "AR":
-                    if (tokens == FOUR){
+                    if (tokens == FOUR) {
                         AR(c);
                     }
-                    if (tokens == TWO){
+                    if (tokens == TWO) {
                         System.out.println("Missing data in command line.");
                     }
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         System.out.println("Credit hours missing.");
                     }
                     break;
                 case "AN":
-                    if (tokens == FOUR){
+                    if (tokens == FOUR) {
                         AN(c);
                     }
-                    if (tokens == TWO){
+                    if (tokens == TWO) {
                         System.out.println("Missing data in command line.");
                     }
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         System.out.println("Credit hours missing.");
                     }
                     break;
                 case "AT":
-                    if (tokens == FIVE){
+                    if (tokens == FIVE) {
                         AT(c);
                     }
-                    if (tokens == TWO || tokens == FOUR){
+                    if (tokens == TWO || tokens == FOUR) {
                         System.out.println("Missing data in command line.");
                     }
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         System.out.println("Credit hours missing.");
                     }
                     break;
                 case "AI":
-                    if (tokens == FIVE){
+                    if (tokens == FIVE) {
                         AI(c);
                     }
-                    if (tokens == TWO || tokens == FOUR){
+                    if (tokens == TWO || tokens == FOUR) {
                         System.out.println("Missing data in command line.");
                     }
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         System.out.println("Credit hours missing.");
                     }
                     break;
@@ -87,35 +95,35 @@ public class TuitionManager {
                     roster.calculations();
                     break;
                 case "R":
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         R(c);
                     }
-                    if (tokens == TWO){
+                    if (tokens == TWO) {
                         System.out.println("Missing data in command line.");
                     }
                     break;
                 case "F":
-                    if (tokens == FOUR){
+                    if (tokens == FOUR) {
                         F(c);
                     }
-                    if (tokens == TWO){
+                    if (tokens == TWO) {
                         System.out.println("Missing data in command line.");
                     }
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         System.out.println("Missing the amount.");
                     }
                     break;
                 case "T":
-                    if (tokens == FIVE){
+                    if (tokens == FIVE) {
                         T(c);
                     }
-                    if (tokens == TWO){
+                    if (tokens == TWO) {
                         System.out.println("Missing data in command line.");
                     }
-                    if (tokens == FOUR){
+                    if (tokens == FOUR) {
                         System.out.println("Payment date invalid.");
                     }
-                    if (tokens == THREE){
+                    if (tokens == THREE) {
                         System.out.println("Credit hours missing.");
                     }
                     break;
@@ -136,58 +144,56 @@ public class TuitionManager {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Command \'"+command+"\' not supported!");
+                    System.out.println("Command \'" + command + "\' not supported!");
                     break;
             }
         }
 
     }
 
-    private void AR(StringTokenizer c){
-        name = c.nextToken();
-        major = toMajor(c.nextToken());
-        try {
-            credits = Integer.parseInt(c.nextToken());
-            if (major!= null && creditValidator(credits)) {
-                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
-                    roster.add(new Resident(name, major, credits));
-                    System.out.println("Student added.");
-                }
-                else {
-                    System.out.println("Student is already in the roster.");
-                }
-            }
-        }catch (NumberFormatException e) {
-            System.out.println("Invalid credit hours.");
-        }
-    }
-
-    private void AN(StringTokenizer c){
+    private void AR(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
         try {
             credits = Integer.parseInt(c.nextToken());
             if (major != null && creditValidator(credits)) {
-                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
-                    roster.add(new NonResident(name, major, credits));
+                if (roster.inRoster(new Student(name, major, credits)) == NOT_FOUND) {
+                    roster.add(new Resident(name, major, credits));
                     System.out.println("Student added.");
-                }
-                else {
+                } else {
                     System.out.println("Student is already in the roster.");
                 }
             }
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Invalid credit hours.");
         }
     }
 
-    private void AT(StringTokenizer c){
+    private void AN(StringTokenizer c) {
+        name = c.nextToken();
+        major = toMajor(c.nextToken());
+        try {
+            credits = Integer.parseInt(c.nextToken());
+            if (major != null && creditValidator(credits)) {
+                if (roster.inRoster(new Student(name, major, credits)) == NOT_FOUND) {
+                    roster.add(new NonResident(name, major, credits));
+                    System.out.println("Student added.");
+                } else {
+                    System.out.println("Student is already in the roster.");
+                }
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid credit hours.");
+        }
+    }
+
+    private void AT(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
         try {
             credits = Integer.parseInt(c.nextToken());
             triState = toTriState(c.nextToken());
-            if(triState != null) {
+            if (triState != null) {
                 if (major != null && creditValidator(credits)) {
                     if (roster.inRoster(new Student(name, major, credits)) == NOT_FOUND) {
                         roster.add(new src.TriState(name, major, credits, triState));
@@ -197,23 +203,22 @@ public class TuitionManager {
                     }
                 }
             }
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println("Invalid credit hours.");
         }
     }
 
-    private void AI(StringTokenizer c){
+    private void AI(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
         try {
             credits = Integer.parseInt(c.nextToken());
             isStudyAbroad = Boolean.parseBoolean(c.nextToken());
             if (major != null && creditValidator(credits, isStudyAbroad)) {
-                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                if (roster.inRoster(new Student(name, major, credits)) == NOT_FOUND) {
                     roster.add(new src.International(name, major, credits, isStudyAbroad));
                     System.out.println("Student added.");
-                }
-                else {
+                } else {
                     System.out.println("Student is already in the roster.");
                 }
             }
@@ -222,65 +227,64 @@ public class TuitionManager {
         }
     }
 
-    private void R(StringTokenizer c){
+    private void R(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
-        if(roster.remove(new Student(name,major,0))){
+        if (roster.remove(new Student(name, major, 0))) {
             System.out.println("Student removed from the roster.");
-        }
-        else{
+        } else {
             System.out.println("Student is not in the roster.");
         }
     }
 
-    private void F(StringTokenizer c){
+    private void F(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
         try {
             aid = Double.parseDouble(c.nextToken());
-            System.out.println(roster.financialAid(name,major,aid));
+            System.out.println(roster.financialAid(name, major, aid));
         } catch (NumberFormatException e) {
             System.out.println("Missing the amount.");
         }
     }
 
-    private void T(StringTokenizer c){
+    private void T(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
         try {
             payment = Double.parseDouble(c.nextToken());
             Date date = new Date(c.nextToken());
-            System.out.println(roster.tuitionPayment(date, payment, new Student(name,major)));
+            System.out.println(roster.tuitionPayment(date, payment, new Student(name, major)));
         } catch (NumberFormatException e) {
             System.out.println("Missing the amount.");
         }
     }
 
-    private void S(StringTokenizer c){
+    private void S(StringTokenizer c) {
         name = c.nextToken();
         major = toMajor(c.nextToken());
         try {
             boolean isAbroad = Boolean.parseBoolean(c.nextToken());
-            System.out.println(roster.changeStudyAbroad(new Student(name,major),isAbroad));
+            System.out.println(roster.changeStudyAbroad(new Student(name, major), isAbroad));
         } catch (NumberFormatException e) {
             System.out.println("Missing data on command line.");
         }
     }
 
-    private void P(StringTokenizer c){
+    private void P(StringTokenizer c) {
 
     }
 
-    private void PR(StringTokenizer c){
+    private void PR(StringTokenizer c) {
 
     }
 
-    private void PN(StringTokenizer c){
+    private void PN(StringTokenizer c) {
 
     }
 
-    private Major toMajor (String input){
-        switch (input.toUpperCase()){
+    private Major toMajor(String input) {
+        switch (input.toUpperCase()) {
             case "EE":
                 return Major.EE;
             case "CS":
@@ -292,39 +296,34 @@ public class TuitionManager {
             case "ME":
                 return Major.ME;
             default:
-                System.out.println(input+" is not a valid major.");
+                System.out.println(input + " is not a valid major.");
                 return null;
         }
     }
 
-    private boolean creditValidator (int credits){
-        if (credits < 0){
+    private boolean creditValidator(int credits) {
+        if (credits < 0) {
             System.out.println("Credit hours cannot be negative.");
             return false;
-        }
-        else if (credits < Student.MIN_CREDITS){
+        } else if (credits < Student.MIN_CREDITS) {
             System.out.println("Minimum credit hours is 3.");
             return false;
-        }
-        else if (credits > Student.MAX_CREDITS){
+        } else if (credits > Student.MAX_CREDITS) {
             System.out.println("Credit hours exceed the maximum 24.");
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    private boolean creditValidator (int credits, boolean isStudyAbroad){
-        if (credits < 0){
+    private boolean creditValidator(int credits, boolean isStudyAbroad) {
+        if (credits < 0) {
             System.out.println("Credit hours cannot be negative.");
             return false;
-        }
-        else if (credits < Student.MIN_CREDITS){
+        } else if (credits < Student.MIN_CREDITS) {
             System.out.println("Minimum credit hours is 3.");
             return false;
-        }
-        else if(!isStudyAbroad) {
+        } else if (!isStudyAbroad) {
             if (credits < Student.MAX_PARTTIME_CREDITS) {
                 System.out.println("International students must enroll at least 12 credits.");
                 return false;
@@ -334,18 +333,16 @@ public class TuitionManager {
             } else {
                 return true;
             }
-        }
-        else if(credits > Student.MAX_PARTTIME_CREDITS){
+        } else if (credits > Student.MAX_PARTTIME_CREDITS) {
             System.out.println("Credit hours exceed the maximum 12.");
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
 
-    private Tri toTriState (String triState){
-        switch (triState.toUpperCase()){
+    private Tri toTriState(String triState) {
+        switch (triState.toUpperCase()) {
             case "CT":
                 return Tri.CT;
             case "NY":

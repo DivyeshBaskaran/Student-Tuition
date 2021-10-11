@@ -1,3 +1,10 @@
+/**
+ * This class is the Subclass of Student that is used to create NonResident students
+
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ *
+ */
+
 package src;
 
 public class NonResident extends Student{
@@ -7,7 +14,10 @@ public class NonResident extends Student{
     public NonResident(String name, Major major, int credits) {
         super(name, major, credits);
     }
-
+    /**Method sets the values of tuition for nonresidents
+     * @Params none
+     * @returns none
+     */
     @Override
     public void tuitionDue(){
         if(getCredits() < MAX_PARTTIME_CREDITS){
@@ -23,7 +33,10 @@ public class NonResident extends Student{
         }
         addTuition(-getPayment());
     }
-
+    /**Method returns toString of super class with added information of nonresident class
+     * @Param none
+     * @return string
+     */
     @Override
     public String toString() {
         String out = super.toString();

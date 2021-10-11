@@ -1,3 +1,10 @@
+/**
+ * This class manages an array of Students and is used by the UI class
+
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ *
+ */
+
 package src;
 
 import src.Student.Major;
@@ -191,6 +198,7 @@ public class Roster {
         } else {
             System.out.println("Student roster is empty!");
         }
+
     }
 
     public void printByName() {
@@ -214,5 +222,7 @@ public class Roster {
             System.out.println("Student roster is empty!");
         }
     }
+
+
 
 }

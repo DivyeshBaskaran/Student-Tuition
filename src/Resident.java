@@ -1,11 +1,24 @@
+/**
+ * This class is the Subclass of Student that is used to create a Resident student
+
+ * @author Divyesh Nemam Baskaran, Viraj Patel
+ *
+ */
+
 package src;
 
 public class Resident extends Student{
-
+    /**Method is a constructor for students that are residents
+     * @param name, major, credits
+     * @returns none
+     */
     public Resident(String name, Major major, int credits) {
         super(name, major, credits);
     }
-
+    /**Method sets the values of tuition for residents
+     * @Params none
+     * @returns none
+     */
     @Override
     public void tuitionDue(){
 
@@ -23,12 +36,18 @@ public class Resident extends Student{
         addTuition(-getFinancialAid());
         addTuition(-getPayment());
     }
-
+    /**Method returns whether student is a resident
+     * @Param none
+     * @return True
+     */
     @Override
     public boolean isResident(){
         return true;
     }
-
+    /**Method returns toString of super class with added information of resident class
+     * @Param none
+     * @return string
+     */
     @Override
     public String toString() {
         String out = super.toString();
