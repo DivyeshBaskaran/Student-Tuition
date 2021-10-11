@@ -191,6 +191,7 @@ public class Roster {
         } else {
             System.out.println("Student roster is empty!");
         }
+
     }
 
     public void printByName() {
@@ -214,5 +215,7 @@ public class Roster {
             System.out.println("Student roster is empty!");
         }
     }
+
+
 
 }

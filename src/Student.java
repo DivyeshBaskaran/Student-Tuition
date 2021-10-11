@@ -48,7 +48,6 @@ public class Student {
     public Student (String name, Major major, int credits){
         this.profile = new Profile(name,major);
         this.credits = credits;
-        //tuitionDue();
     }
     /** Method returns whether or not the student is a resident
      * @Params none
@@ -56,6 +55,13 @@ public class Student {
      */
     public boolean isResident(){
         return false;
+    }
+    /** Method returns profile of a student
+     * @Params none
+     * @return profile
+     */
+    public Profile getProfile(){
+        return profile;
     }
     /**Method returns the amount of financial aid received
      * @Params none
@@ -102,70 +108,89 @@ public class Student {
     public void addTuition(double money){
         tuition += money;
     }
-    /**
-     *
+    /**Method returns whether a resident has received financial aid or not
+     *@Params none
+     *@returns awardedFA
      */
     public boolean getFinancialAidStatus() {
         return awardedFA;
     }
-    /**
-     *
+    /**Method returns how many credits a student has
+     * @Params none
+     * @returns credits
      */
     public int getCredits() {
         return credits;
     }
-    /**
-     *
+    /**Method sets the number of credits a student is taking
+     * @Params int credits
+     * @returns none
      */
     public void setCredits(int credits) {
         this.credits = credits;
     }
-    /**
-     *
+    /**Method whether or not student is international
+     * @Params none
+     * @returns boolean
      */
     public boolean isInternational(){
         return false;
     }
-    /**
-     *
+    /**Method sets the total payment
+     * @Params double payment
+     * @returns none
      */
     public void setPayment(double payment) {
         this.payment = payment;
     }
-    /**
-     *
+    /**Method returns the total payment so far
+     * @Param none
+     * @returns payment
      */
     public double getPayment() {
         return payment;
     }
-    /**
-     *
+    /** Method sets tuition due
+     * @Param double tuition
+     * @returns none
      */
     public void setTuition(double tuition) {
         this.tuition = tuition;
     }
-    /**
-     *
+    /**Method sets the date of the last payment
+     * @Param Date date
+     * @return none
      */
     public void setDate(Date date) {
         this.date = date;
     }
-    /**
-     *
+    /**Method returns the date of the last payment
+     * @Param none
+     * @returns date
      */
     public Date getDate() {
         return  date;
     }
-    /**
-     *
+    /**Method allows to make a tuition payment
+     * @Param double deposit, Date fate
+     * @returns none
      */
     public void payment(double deposit, Date date){
         this.tuition -= deposit;
         this.payment += deposit;
         this.date = date;
     }
-    /**
-     *
+    /**Method allows to set how much tuition is due
+     * @Param none
+     * @returns none
+     */
+    public void tuitionDue(){
+
+    }
+
+    /**Method returns student credits, tuition, last payment, last pay date, name, and major
+     * @Params none
+     * @returns string
      */
     @Override
     public String toString() {
