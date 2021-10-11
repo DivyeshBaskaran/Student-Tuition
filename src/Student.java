@@ -11,6 +11,7 @@ public class Student {
     private double payment;
     private double financialAid;
     private boolean awardedFA = false;
+    private boolean isStudyAbroad;
     private DecimalFormat df = new DecimalFormat("#.00");
     public static enum Major {CS,IT,BA,EE,ME};
     public static enum TriState {NY,CT};
@@ -29,6 +30,7 @@ public class Student {
     public static final int MIN_CREDITS = 3;
     public static final int MAX_PARTTIME_CREDITS = 12;
     public static final int MAX_FULLTIME_CREDITS = 16;
+    public static final int MAX_FINANCIAL_AID = 10000;
 
     public Student (String name, Major major){
         this.profile = new Profile(name,major);
@@ -40,6 +42,18 @@ public class Student {
         //tuitionDue();
     }
 
+    public boolean isResident(){
+        return false;
+    }
+
+    public void setStudyAbroad(boolean studyAbroad) {
+        isStudyAbroad = false;
+    }
+
+    public boolean getStudyAbroad(){
+        return false;
+    }
+
     public void tuitionDue(){
 
     }
@@ -47,6 +61,7 @@ public class Student {
     public void setFinancialAid(double financialAid) {
         this.financialAid = financialAid;
         addTuition(-financialAid);
+        awardedFA = true;
     }
 
     public Profile getProfile() {
@@ -69,13 +84,30 @@ public class Student {
         return credits;
     }
 
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public boolean isInternational(){
+        return false;
+    }
+
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
+
     public void setTuition(double tuition) {
         this.tuition = tuition;
     }
 
-    public void payment(double deposit){
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void payment(double deposit, Date date){
         this.tuition -= deposit;
         this.payment += deposit;
+        this.date = date;
     }
 
     @Override

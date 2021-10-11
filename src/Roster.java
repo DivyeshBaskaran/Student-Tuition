@@ -1,6 +1,6 @@
 package src;
 
-import java.util.Arrays;
+import src.Student.Major;
 
 public class Roster {
     private Student[] roster = new Student[GROW];
@@ -58,6 +58,76 @@ public class Roster {
             return true;
         }
         return false;
+    }
+
+    public String changeStudyAbroad(Student student, boolean status){
+        int index =  find(student);
+        if(index == NOT_FOUND){
+            return "Couldn't find the international student.";
+        }
+        else if (!student.isInternational()) {
+            return "Student is not an international student.";
+        }
+        else if(status == true) {
+            roster[index].setCredits(Student.MAX_PARTTIME_CREDITS);
+            roster[index].setStudyAbroad(status);
+            roster[index].setDate(null);
+            roster[index].setPayment(0);
+            roster[index].tuitionDue();
+            return "Tuition updated.";
+        }
+        else{
+            roster[index].setStudyAbroad(status);
+            roster[index].setDate(null);
+            roster[index].setPayment(0);
+            roster[index].tuitionDue();
+            return "Tuition updated.";
+        }
+
+    }
+
+    public String tuitionPayment (Date date, double payment, Student student){
+        int index = find(student);
+        if(index == NOT_FOUND){
+            return "Student not in the roster.";
+        }
+        else if (payment <= 0 ){
+            return "Invalid amount.";
+        }
+        else if (payment > roster[index].getTuition()){
+            return "Amount is greater than amount due.";
+        }
+        else if(date.isValid()) {
+            roster[index].payment(payment,date);
+            return "Payment applied.";
+        }
+        else {
+            return "Payment date invalid.";
+        }
+    }
+
+    public String financialAid(String name, Major major, double aid){
+        int index = find(new Student(name,major,0));
+        if (index == NOT_FOUND){
+            return "Student not in the roster.";
+        }
+        else {
+            if(roster[index].isResident()){
+                if(roster[index].getFinancialAidStatus()){
+                    return "Awarded once already.";
+                }
+                else if(roster[index].getCredits()>=Student.MAX_PARTTIME_CREDITS){
+                    roster[index].setFinancialAid(aid);
+                    return "Tuition updated.";
+                }
+                else{
+                    return "Parttime student doesn't qualify for the award.";
+                }
+            }
+            else{
+                return "Is not a resident.";
+            }
+        }
     }
 
     public void calculations(){

@@ -14,6 +14,8 @@ public class TuitionManager {
     private int credits;
     private Major major;
     private TriState triState;
+    private double aid;
+    private double payment;
     private boolean isStudyAbroad;
 
     private Roster roster;
@@ -83,13 +85,37 @@ public class TuitionManager {
                     roster.calculations();
                     break;
                 case "R":
-                    R(c);
+                    if (tokens == THREE){
+                        R(c);
+                    }
+                    if (tokens == TWO){
+                        System.out.println("Missing data in command line.");
+                    }
                     break;
                 case "F":
-                    F(c);
+                    if (tokens == FOUR){
+                        F(c);
+                    }
+                    if (tokens == TWO){
+                        System.out.println("Missing data in command line.");
+                    }
+                    if (tokens == THREE){
+                        System.out.println("Missing the amount.");
+                    }
                     break;
                 case "T":
-                    T(c);
+                    if (tokens == FIVE){
+                        T(c);
+                    }
+                    if (tokens == TWO){
+                        System.out.println("Missing data in command line.");
+                    }
+                    if (tokens == FOUR){
+                        System.out.println("Payment date invalid.");
+                    }
+                    if (tokens == THREE){
+                        System.out.println("Credit hours missing.");
+                    }
                     break;
                 case "S":
                     S(c);
@@ -185,15 +211,37 @@ public class TuitionManager {
     }
 
     private void F(StringTokenizer c){
-
+        name = c.nextToken();
+        major = toMajor(c.nextToken());
+        try {
+            aid = Double.parseDouble(c.nextToken());
+            roster.financialAid(name,major,aid);
+        } catch (NumberFormatException e) {
+            System.out.println("Missing the amount.");
+        }
     }
 
     private void T(StringTokenizer c){
-
+        name = c.nextToken();
+        major = toMajor(c.nextToken());
+        try {
+            payment = Double.parseDouble(c.nextToken());
+            Date date = new Date(c.nextToken());
+            System.out.println(roster.tuitionPayment(date, payment, new Student(name,major)));
+        } catch (NumberFormatException e) {
+            System.out.println("Missing the amount.");
+        }
     }
 
     private void S(StringTokenizer c){
-
+        name = c.nextToken();
+        major = toMajor(c.nextToken());
+        try {
+            boolean isAbroad = Boolean.parseBoolean(c.nextToken());
+            System.out.println(roster.changeStudyAbroad(new Student(name,major),isAbroad));
+        } catch (NumberFormatException e) {
+            System.out.println("Missing data on command line.");
+        }
     }
 
     private void P(StringTokenizer c){

@@ -1,15 +1,14 @@
 package src;
 
 public class International extends NonResident {
-    private boolean isStudyAbroad;
     public International(String name, Major major, int credits, boolean isStudyAbroad) {
         super(name, major, credits);
-        this.isStudyAbroad = isStudyAbroad;
+        this.setStudyAbroad(isStudyAbroad);
     }
 
     @Override
     public void tuitionDue() {
-        if(!isStudyAbroad) {
+        if(!this.getStudyAbroad()) {
             super.tuitionDue();
             if (getCredits() >= MAX_PARTTIME_CREDITS)
                 addTuition(ADDITIONAL_FEES);
@@ -19,10 +18,22 @@ public class International extends NonResident {
     }
 
     @Override
+    public void setStudyAbroad(boolean studyAbroad) {
+        this.setStudyAbroad(studyAbroad);
+    }
+
+
+
+    @Override
+    public boolean isInternational(){
+        return true;
+    }
+
+    @Override
     public String toString() {
         super.toString();
         String out = ":international";
-        if (isStudyAbroad){
+        if (this.getStudyAbroad()){
             out += ":study abroad";
         }
         return out;
