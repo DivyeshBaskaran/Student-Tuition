@@ -28,8 +28,8 @@ public class Resident extends Student{
 
     @Override
     public String toString() {
-        super.toString();
-        String out = "resident:";
+        String out = super.toString();
+        out += "resident";
         return out;
     }
 }

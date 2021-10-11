@@ -12,7 +12,7 @@ public class Student {
     private double financialAid;
     private boolean awardedFA = false;
     private boolean isStudyAbroad;
-    private DecimalFormat df = new DecimalFormat("#.00");
+    private DecimalFormat df = new DecimalFormat("0.00");
     public static enum Major {CS,IT,BA,EE,ME};
     public static enum TriState {NY,CT};
 
@@ -96,12 +96,20 @@ public class Student {
         this.payment = payment;
     }
 
+    public double getPayment() {
+        return payment;
+    }
+
     public void setTuition(double tuition) {
         this.tuition = tuition;
     }
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Date getDate() {
+        return  date;
     }
 
     public void payment(double deposit, Date date){
@@ -112,8 +120,8 @@ public class Student {
 
     @Override
     public String toString() {
-        super.toString();
-        String out = credits+" credit hours:tuition due:"+
+        String out = profile.toString();
+        out += credits+" credit hours:tuition due:"+
                 df.format(tuition)+":total payment:"+df.format(payment)+":last payment date: ";
         if(date == null){
             out += "--/--/--:";

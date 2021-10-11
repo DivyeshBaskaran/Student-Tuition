@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import src.Student.Major;
 import src.Student.TriState;
+import src.Roster;
 
 public class TuitionManager {
 
@@ -20,6 +21,7 @@ public class TuitionManager {
 
     private Roster roster;
 
+    private static final int NOT_FOUND = -1;
     private static final int ONE = 1;
     private static final int TWO = 2;
     private static final int THREE = 3;
@@ -121,21 +123,21 @@ public class TuitionManager {
                     S(c);
                     break;
                 case "P":
-                    P(c);
+                    roster.print();
                     break;
-                case "PR":
-                    PR(c);
+                case "PT":
+                    roster.printByDate();
                     break;
                 case "PN":
-                    PN(c);
+                    roster.printByName();
                     break;
-
                 case "Q":
-
-                    System.out.println("Collection Manager terminated.");
+                    System.out.println("Tuition Manager terminated.");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid command!");
+                    System.out.println("Command \'"+command+"\' not supported!");
+                    break;
             }
         }
 
@@ -147,8 +149,13 @@ public class TuitionManager {
         try {
             credits = Integer.parseInt(c.nextToken());
             if (major!= null && creditValidator(credits)) {
-                roster.add(new Resident(name,major,credits));
-                System.out.println("Student added.");
+                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                    roster.add(new Resident(name, major, credits));
+                    System.out.println("Student added.");
+                }
+                else {
+                    System.out.println("Student is already in the roster.");
+                }
             }
         }catch (NumberFormatException e) {
             System.out.println("Invalid credit hours.");
@@ -161,8 +168,13 @@ public class TuitionManager {
         try {
             credits = Integer.parseInt(c.nextToken());
             if (major != null && creditValidator(credits)) {
-                roster.add(new NonResident(name, major, credits));
-                System.out.println("Student added.");
+                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                    roster.add(new NonResident(name, major, credits));
+                    System.out.println("Student added.");
+                }
+                else {
+                    System.out.println("Student is already in the roster.");
+                }
             }
         }catch (NumberFormatException e) {
             System.out.println("Invalid credit hours.");
@@ -176,8 +188,13 @@ public class TuitionManager {
             credits = Integer.parseInt(c.nextToken());
             triState = toTriState(c.nextToken());
             if (major != null && creditValidator(credits)) {
-                roster.add(new src.TriState(name, major, credits, triState));
-                System.out.println("Student added.");
+                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                    roster.add(new src.TriState(name, major, credits, triState));
+                    System.out.println("Student added.");
+                }
+                else {
+                    System.out.println("Student is already in the roster.");
+                }
             }
         }catch (NumberFormatException e) {
             System.out.println("Invalid credit hours.");
@@ -190,9 +207,14 @@ public class TuitionManager {
         try {
             credits = Integer.parseInt(c.nextToken());
             isStudyAbroad = Boolean.parseBoolean(c.nextToken());
-            if (major != null && creditValidator(credits, true)) {
-                roster.add(new src.International(name, major, credits, isStudyAbroad));
-                System.out.println("Student added.");
+            if (major != null && creditValidator(credits, isStudyAbroad)) {
+                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
+                    roster.add(new src.International(name, major, credits, isStudyAbroad));
+                    System.out.println("Student added.");
+                }
+                else {
+                    System.out.println("Student is already in the roster.");
+                }
             }
         } catch (NumberFormatException e) {
             System.out.println("Invalid credit hours.");

@@ -20,8 +20,8 @@ public class TriState extends NonResident{
 
     @Override
     public String toString() {
-        super.toString();
-        String out = " (tri-state) :";
+        String out = super.toString();
+        out += " (tri-state) :";
         if(triState.equals(TriState.NY)){
             out += "NY";
         }
