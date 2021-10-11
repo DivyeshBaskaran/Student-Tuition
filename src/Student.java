@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package src;
 
 import java.text.DecimalFormat;
@@ -31,97 +34,139 @@ public class Student {
     public static final int MAX_PARTTIME_CREDITS = 12;
     public static final int MAX_FULLTIME_CREDITS = 16;
     public static final int MAX_FINANCIAL_AID = 10000;
-
+    /** Constructor method for student class
+     * @Params String name, Major major
+     * @retrun void
+     */
     public Student (String name, Major major){
         this.profile = new Profile(name,major);
     }
-
+    /**Constructor method for student class including credits
+     * @Params String name, Major major, int credits
+     * @return void
+     */
     public Student (String name, Major major, int credits){
         this.profile = new Profile(name,major);
         this.credits = credits;
         //tuitionDue();
     }
-
+    /** Method returns whether or not the student is a resident
+     * @Params none
+     * @return false
+     */
     public boolean isResident(){
         return false;
     }
-
+    /**Method returns the amount of financial aid received
+     * @Params none
+     * @return financialAid
+     */
     public double getFinancialAid(){
         return financialAid;
     }
-
+    /**Method that lets you set the value of study aborad for an international student
+     * @Params studyAbroad
+     * @return nothing
+     */
     public void setStudyAbroad(boolean studyAbroad) {
         isStudyAbroad = false;
     }
-
+    /**Method that returns value of study abroad
+     * @Params none
+     * @return false if not or if not international and True if you are international and abroad
+     */
     public boolean getStudyAbroad(){
         return false;
     }
-
-    public void tuitionDue(){
-
-    }
-
+    /**Method sets how much financial aid a resident student received
+     * @Params double financialAid
+     * @return none
+     */
     public void setFinancialAid(double financialAid) {
         this.financialAid = financialAid;
         addTuition(-financialAid);
         awardedFA = true;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
+    /**Method returns how much tuition someone has left to pay
+     * @Params None
+     * @return tuition
+     */
     public double getTuition() {
         return tuition;
     }
-
+    /**Method adds to the value of tuition
+     * @Params double money
+     * @returns none
+     */
     public void addTuition(double money){
         tuition += money;
     }
-
+    /**
+     *
+     */
     public boolean getFinancialAidStatus() {
         return awardedFA;
     }
-
+    /**
+     *
+     */
     public int getCredits() {
         return credits;
     }
-
+    /**
+     *
+     */
     public void setCredits(int credits) {
         this.credits = credits;
     }
-
+    /**
+     *
+     */
     public boolean isInternational(){
         return false;
     }
-
+    /**
+     *
+     */
     public void setPayment(double payment) {
         this.payment = payment;
     }
-
+    /**
+     *
+     */
     public double getPayment() {
         return payment;
     }
-
+    /**
+     *
+     */
     public void setTuition(double tuition) {
         this.tuition = tuition;
     }
-
+    /**
+     *
+     */
     public void setDate(Date date) {
         this.date = date;
     }
-
+    /**
+     *
+     */
     public Date getDate() {
         return  date;
     }
-
+    /**
+     *
+     */
     public void payment(double deposit, Date date){
         this.tuition -= deposit;
         this.payment += deposit;
         this.date = date;
     }
-
+    /**
+     *
+     */
     @Override
     public String toString() {
         String out = profile.toString();
