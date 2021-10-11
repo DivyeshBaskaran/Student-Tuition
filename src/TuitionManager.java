@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 import src.Student.Major;
-import src.Student.TriState;
+import src.Student.Tri;
 import src.Roster;
 
 public class TuitionManager {
@@ -14,7 +14,7 @@ public class TuitionManager {
     private String name;
     private int credits;
     private Major major;
-    private TriState triState;
+    private Tri triState;
     private double aid;
     private double payment;
     private boolean isStudyAbroad;
@@ -187,13 +187,14 @@ public class TuitionManager {
         try {
             credits = Integer.parseInt(c.nextToken());
             triState = toTriState(c.nextToken());
-            if (major != null && creditValidator(credits)) {
-                if(roster.inRoster(new Student(name,major,credits))==NOT_FOUND) {
-                    roster.add(new src.TriState(name, major, credits, triState));
-                    System.out.println("Student added.");
-                }
-                else {
-                    System.out.println("Student is already in the roster.");
+            if(triState != null) {
+                if (major != null && creditValidator(credits)) {
+                    if (roster.inRoster(new Student(name, major, credits)) == NOT_FOUND) {
+                        roster.add(new src.TriState(name, major, credits, triState));
+                        System.out.println("Student added.");
+                    } else {
+                        System.out.println("Student is already in the roster.");
+                    }
                 }
             }
         }catch (NumberFormatException e) {
@@ -237,7 +238,7 @@ public class TuitionManager {
         major = toMajor(c.nextToken());
         try {
             aid = Double.parseDouble(c.nextToken());
-            roster.financialAid(name,major,aid);
+            System.out.println(roster.financialAid(name,major,aid));
         } catch (NumberFormatException e) {
             System.out.println("Missing the amount.");
         }
@@ -315,7 +316,15 @@ public class TuitionManager {
     }
 
     private boolean creditValidator (int credits, boolean isStudyAbroad){
-        if(!isStudyAbroad) {
+        if (credits < 0){
+            System.out.println("Credit hours cannot be negative.");
+            return false;
+        }
+        else if (credits < Student.MIN_CREDITS){
+            System.out.println("Minimum credit hours is 3.");
+            return false;
+        }
+        else if(!isStudyAbroad) {
             if (credits < Student.MAX_PARTTIME_CREDITS) {
                 System.out.println("International students must enroll at least 12 credits.");
                 return false;
@@ -326,10 +335,6 @@ public class TuitionManager {
                 return true;
             }
         }
-        else if (credits < Student.MIN_CREDITS){
-            System.out.println("Minimum credit hours is 3.");
-            return false;
-        }
         else if(credits > Student.MAX_PARTTIME_CREDITS){
             System.out.println("Credit hours exceed the maximum 12.");
             return false;
@@ -339,12 +344,12 @@ public class TuitionManager {
         }
     }
 
-    private TriState toTriState (String triState){
+    private Tri toTriState (String triState){
         switch (triState.toUpperCase()){
             case "CT":
-                return TriState.CT;
+                return Tri.CT;
             case "NY":
-                return TriState.NY;
+                return Tri.NY;
             default:
                 System.out.println("Not part of the tri-state area.");
                 return null;

@@ -21,6 +21,7 @@ public class NonResident extends Student{
                 addTuition(NONRESIDENT_PARTTIME_PERCREDIT*(getCredits()-MAX_FULLTIME_CREDITS));
             }
         }
+        addTuition(-getPayment());
     }
 
     @Override

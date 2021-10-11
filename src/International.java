@@ -11,18 +11,18 @@ public class International extends NonResident {
 
     @Override
     public void tuitionDue() {
-        if(!this.getStudyAbroad()) {
+        if(!this.isStudyAbroad) {
             super.tuitionDue();
             if (getCredits() >= MAX_PARTTIME_CREDITS)
                 addTuition(ADDITIONAL_FEES);
         } else{
-            addTuition(UNIVERSITY_FEES+ADDITIONAL_FEES);
+            setTuition(UNIVERSITY_FEES+ADDITIONAL_FEES);
         }
     }
 
     @Override
-    public void setStudyAbroad(boolean isStudyAbroad) {
-        this.isStudyAbroad = (isStudyAbroad);
+    public void setStudyAbroad(boolean isAbroad) {
+        this.isStudyAbroad = isAbroad;
     }
 
 
@@ -36,7 +36,7 @@ public class International extends NonResident {
     public String toString() {
         String out = super.toString();
         out += ":international";
-        if (this.getStudyAbroad()){
+        if (this.isStudyAbroad){
             out += ":study abroad";
         }
         return out;

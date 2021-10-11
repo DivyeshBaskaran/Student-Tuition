@@ -7,14 +7,14 @@ public class Student {
     private Profile profile;
     private double tuition;
     private int credits;
-    private Date date;
+    private Date date = null;
     private double payment;
     private double financialAid;
     private boolean awardedFA = false;
     private boolean isStudyAbroad;
     private DecimalFormat df = new DecimalFormat("0.00");
     public static enum Major {CS,IT,BA,EE,ME};
-    public static enum TriState {NY,CT};
+    public static enum Tri {NY,CT};
 
     public static final double RESIDENT_TUITION = 12536;
     public static final double NONRESIDENT_TUITION = 29737;
@@ -44,6 +44,10 @@ public class Student {
 
     public boolean isResident(){
         return false;
+    }
+
+    public double getFinancialAid(){
+        return financialAid;
     }
 
     public void setStudyAbroad(boolean studyAbroad) {

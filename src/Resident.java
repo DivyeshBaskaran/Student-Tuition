@@ -8,6 +8,7 @@ public class Resident extends Student{
 
     @Override
     public void tuitionDue(){
+
         if(getCredits() < MAX_PARTTIME_CREDITS){
             addTuition(RESIDENT_PARTTIME_PERCREDIT*getCredits());
             addTuition(UNIVERSITY_FEES*PARTTIME_UNIDISCOUNT);
@@ -19,6 +20,8 @@ public class Resident extends Student{
                 addTuition(RESIDENT_PARTTIME_PERCREDIT*(getCredits()-MAX_FULLTIME_CREDITS));
             }
         }
+        addTuition(-getFinancialAid());
+        addTuition(-getPayment());
     }
 
     @Override
@@ -30,6 +33,9 @@ public class Resident extends Student{
     public String toString() {
         String out = super.toString();
         out += "resident";
+        if(getFinancialAidStatus()){
+            out += ":financial aid $" + getFinancialAid();
+        }
         return out;
     }
 }
