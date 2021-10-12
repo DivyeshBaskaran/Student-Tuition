@@ -21,6 +21,11 @@ public class Roster {
 
     }
 
+    /**
+     * Method returns index of student located in roster array
+     * @param student
+     * @return int index
+     */
     private int find(Student student) {
         for (int i = 0; i < size; i++) {
             if (roster[i].getProfile().getName().equals(student.getProfile().getName()) &&
@@ -31,6 +36,11 @@ public class Roster {
         return NOT_FOUND;
     }
 
+    /**
+     * Method grows the size of roster array by 4
+     * @Params none
+     * @return none
+     */
     private void grow() {
         int newSize = roster.length;
         newSize += GROW;
@@ -41,6 +51,11 @@ public class Roster {
         roster = newRoster;
     }
 
+    /**
+     * Method adds a student to array and returns boolean based on if student could be added to roster
+     * @param student
+     * @return boolean
+     */
     public boolean add(Student student) {
         if (find(student) == NOT_FOUND) {
             if (size < roster.length - ONE) {
@@ -55,6 +70,11 @@ public class Roster {
         return false;
     }
 
+    /**
+     *Method returns boolean if it was able to remove a student from roster
+     * @param student
+     * @return boolean
+     */
     public boolean remove(Student student) {
         int index = find(student);
         if (index != NOT_FOUND) {
@@ -67,10 +87,20 @@ public class Roster {
         return false;
     }
 
+    /**
+     * Method is a public verison of find, returns index of studen in roster
+     * @param student
+     * @return int
+     */
     public int inRoster(Student student) {
         return find(student);
     }
 
+    /**
+     * Method changes international students study abroad status
+     * @param student, status
+     * @return String
+     */
     public String changeStudyAbroad(Student student, boolean status) {
         int index = find(student);
         if (index == NOT_FOUND) {
@@ -94,6 +124,11 @@ public class Roster {
 
     }
 
+    /**
+     * Method makes a payment towards student tuition
+     * @param date, payment, student
+     * @return string
+     */
     public String tuitionPayment(Date date, double payment, Student student) {
         int index = find(student);
         if (index == NOT_FOUND) {
@@ -110,6 +145,11 @@ public class Roster {
         }
     }
 
+    /**
+     * Method allows a resident student recieve finnancial aid
+     * @param name, major, aid
+     * @return string
+     */
     public String financialAid(String name, Major major, double aid) {
         int index = find(new Student(name, major, 0));
         if (index == NOT_FOUND) {
@@ -132,6 +172,11 @@ public class Roster {
         }
     }
 
+    /**
+     * Method calculated the tuition due for all students in roster
+     * @Params none
+     * @return none
+     */
     public void calculations() {
         for (Student student : roster) {
             if (student != null) {
@@ -141,7 +186,11 @@ public class Roster {
         }
     }
 
-
+    /**
+     * Method prints out all students in roster
+     * @Params none
+     * @return none
+     */
     public void print() {
         if (size != 0) {
             System.out.println("* list of students in the roster **");
@@ -155,7 +204,11 @@ public class Roster {
         }
     }
 
-
+    /**
+     * Method prints out all students who have made payments in ascending date order
+     * @Params none
+     * @return none
+     */
     public void printByDate() {
         if (size != 0) {
             Student[] orderByDate = new Student[size];
@@ -200,7 +253,11 @@ public class Roster {
         }
 
     }
-
+    /**
+     * Method prints out all students in name alphabetical order
+     * @Params none
+     * @return none
+     */
     public void printByName() {
         if (size != 0) {
             Student temp;

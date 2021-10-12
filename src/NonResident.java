@@ -9,8 +9,11 @@ package src;
 
 public class NonResident extends Student{
 
-
-
+    /**
+     * Method constructor for nonresidents in student class
+     * @param name, major, credits
+     * @returns none
+     */
     public NonResident(String name, Major major, int credits) {
         super(name, major, credits);
     }

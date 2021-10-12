@@ -9,11 +9,20 @@ package src;
 
 public class TriState extends NonResident{
     private Tri triState;
+
+    /**
+     *Method is Constructor for tristate Students
+     * @param name, major, credits, triState
+     * @returns none
+     */
     public TriState(String name, Major major, int credits, Tri triState) {
         super(name, major, credits);
         this.triState = triState;
     }
-
+    /**Method sets the values of tuition for tristate students
+     * @Params none
+     * @returns none
+     */
     @Override
     public void tuitionDue(){
         super.tuitionDue();
@@ -24,7 +33,10 @@ public class TriState extends NonResident{
             addTuition(-CT_DISCOUNT);
         }
     }
-
+    /**Method returns toString of super class with added information of tristate class
+     * @Param none
+     * @return string
+     */
     @Override
     public String toString() {
         String out = super.toString();
